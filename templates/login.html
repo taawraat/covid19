@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In & Register</title>
+    <link rel="stylesheet" href="/static/styles/login.css" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for catagory,message in messages %}
+                <div class="alert alert-{{catagory}}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+           {% endwith %}
+          <!-- Login Form -->
+          <form action="/login" method="post" novalidate>
+            <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <button type="submit" class="fadeIn fourth">Log In</button>
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="/register">Create account</a>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

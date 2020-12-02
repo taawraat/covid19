@@ -1,0 +1,29 @@
+form { margin: 10px 10px; }
+
+h2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.container { max-width: 360px; }
+
+.divider {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.divider hr {
+  margin: 7px 0px;
+  width: 70%;
+}
+
+.left { float: left; }
+
+.right { float: right; }
+
+.border {
+    width: 100%;
+    margin: 35%;
+    margin-top: 10%;
+}

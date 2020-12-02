@@ -1,0 +1,109 @@
+{% extends "template.html" %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg nav_style p-3">
+  <a class="navbar-brand pl-5" href="#">COVID-19</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto pr-5 text-capitalize">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#aboutid">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#sympid">Symptoms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#preventid">Prevention</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bdcorona">bangladeshcoronalive</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="#contactid">Contact</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<!-- ****************** Project done start ****************** -->
+
+<section class="corona_update container-fluid">
+  <div class=" mb-3 ">
+    <h3 class="text-center text-uppercase"> COVID-19 LIVE UPDATES OF THE BANGLADESH </h3>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center" id="tbval">
+      <tr>
+        <th>District</th>
+        <th>TotalConfirmed</th>
+      </tr>
+    </table>
+  </div>
+  </div>
+</section>
+
+<!--/////////////// Top cursor ///////////////-->
+<div class="container scrolltop float-right pr-5">
+    <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"> </i>
+  </div>
+
+<script type="text/javascript">
+  $('.count').counterUp({
+    delay: 10,
+    time: 3000
+    
+  })
+  window.onload = fetch();
+  // ************* top arrow script *************
+
+  mybutton = document.getElementById("myBtn");
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () { scrollFunction() };
+  function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  // When the user clicks on the button, scroll to the top of the document 
+  function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
+  function fetch() {
+    $.get("https://corona-bd.herokuapp.com/district",
+      function (data) {
+        var tbval = document.getElementById('tbval');
+        for (var i = 1; i < (data['data'].length); i++) {
+          var x = tbval.insertRow();
+
+          x.insertCell(0);
+
+          tbval.rows[i].cells[0].innerHTML = data['data'][i - 1]['name'];
+          tbval.rows[i].cells[0].style.background = '#7a4a91';
+          tbval.rows[i].cells[0].style.color = '#fff';
+
+          x.insertCell(1);
+          tbval.rows[i].cells[1].innerHTML = data['data'][i - 1]['count'];
+          tbval.rows[i].cells[1].style.background = '#4bb7d8';
+        }
+      }
+    );
+  }
+
+</script>
+
+{% endblock %}
